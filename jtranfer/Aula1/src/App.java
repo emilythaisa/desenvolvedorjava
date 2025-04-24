@@ -1,6 +1,7 @@
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.FileWriter; //Classe para escrever no arquivo
+import java.io.IOException; // Classe para tratar exceções do arquivo
 import java.util.Scanner;
+import java.text.Normalizer;
 
 public class App {
     public static void main(String[] args) throws Exception {
@@ -46,9 +47,21 @@ public class App {
             case 6:
                 meioTransporte="Carro";break;
 
+        
         }
         //Task de amanhã: salvar os dados no arquivo 
         //Task no github (git e github)
         System.out.println("Nome: "+nome+ ","+ "meio do Transporte: " +meioTransporte);
+
+        try(FileWriter escritor = new FileWriter("dados.txt", true)){
+
+            escritor.write(nome+"."+meioTransporte+"\n");
+            System.out.println("dados gravados com sucesso");
+
+        }catch(IOException e){
+            System.out.println("Erro ao gravar os dados"+e.getMessage());
+
+        }
     }
+
 }
